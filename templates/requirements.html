@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Requirements</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script>
+        function addField() {
+            const container = document.getElementById('fields');
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <input type="text" name="field_name[]" placeholder="Field name">
+                <input type="text" name="field_values[]" placeholder="Comma-separated values">
+                <button type="button" onclick="this.parentElement.remove()">Remove</button>
+                <br><br>
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</head>
+<body>
+    <h2>Edit Job Requirements</h2>
+    <form method="POST">
+        <label>Skills (comma separated)</label>
+        <input name="skills" placeholder="e.g. python, node.js"><br>
+    
+        <label>Experience (comma separated)</label>
+        <input name="experience" placeholder="e.g. 2 years, 3 years"><br>
+    
+        <label>Job Titles (comma separated)</label>
+        <input name="job_title" placeholder="e.g. web developer"><br>
+    
+        <button type="submit">Save Requirements</button>
+    </form>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <a href="/">Back to Upload</a></body>
+</html>
